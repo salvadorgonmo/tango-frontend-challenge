@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Box } from '@material-ui/core';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 import { PostCard } from './components/PostCard';
+// import { commentsSlice } from '../../features/commentsSlice';
 
 const host = 'https://jsonplaceholder.typicode.com/posts';
 
 export const Home = () => {
   const [posts, setPosts] = useState([]);
+  const comments = useSelector((state) => state.comments.comments);
+  console.log('comments: ', comments);
+
   const fetchPosts = async () => {
     const result = await axios.get(host);
     setPosts(result.data);

@@ -4,22 +4,26 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import { Home } from './pages/Home';
 import { Post } from './pages/Post';
+import store from './app/store';
 import './App.css';
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route path="/" exact>
-          <Home />
-        </Route>
-        <Route path="/post:id">
-          <Post />
-        </Route>
-      </Switch>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Switch>
+          <Route path="/" exact>
+            <Home />
+          </Route>
+          <Route path="/post/:id" exact>
+            <Post />
+          </Route>
+        </Switch>
+      </Router>
+    </Provider>
   );
 }
 
