@@ -1,29 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Box } from '@material-ui/core';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { PostCard } from './components/PostCard';
-// import { commentsSlice } from '../../features/commentsSlice';
+import { addPost } from '../../features/postsSlice';
 
 const host = 'https://jsonplaceholder.typicode.com/posts';
 
 export const Home = () => {
-  const [posts, setPosts] = useState([]);
-  const comments = useSelector((state) => state.comments.comments);
-  console.log('comments: ', comments);
+  const dispatch = useDispatch();
+  const posts = useSelector((state) => state.posts.posts);
+  const [localPosts, setLocalPosts] = useState(posts);
 
-  const fetchPosts = async () => {
+  const fetchPosts = useCallback(async () => {
     const result = await axios.get(host);
-    setPosts(result.data);
-  };
+    setLocalPosts(result.data);
+    dispatch(addPost(result.data));
+  }, [dispatch]);
 
   useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [fetchPosts]);
 
   return (
     <Box>
-      {posts.map((post) => (
+      {localPosts.map((post) => (
         <PostCard
           key={post.id}
           body={post.body}

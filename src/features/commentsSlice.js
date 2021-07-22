@@ -5,11 +5,11 @@ const initialState = {
 };
 
 export const commentsSlice = createSlice({
-  name: 'counter',
+  name: 'comments',
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
-    add: (state, action) => {
+    addComment: (state, action) => {
       console.log('state: ', state);
       console.log('action: ', action);
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
@@ -19,5 +19,7 @@ export const commentsSlice = createSlice({
     },
   },
 });
+
+export const { addComment } = commentsSlice.actions;
 
 export default commentsSlice.reducer;

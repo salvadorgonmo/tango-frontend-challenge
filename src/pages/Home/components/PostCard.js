@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -24,10 +25,15 @@ export const PostCard = ({
   title,
   body,
 }) => {
+  const history = useHistory();
   const classes = useStyles();
 
+  const handleClick = () => {
+    history.push(`/post/${id}`);
+  };
+
   return (
-    <Card key={id} className={classes.root}>
+    <Card key={id} className={classes.root} onClick={handleClick}>
       <CardHeader
         title={title}
       />
