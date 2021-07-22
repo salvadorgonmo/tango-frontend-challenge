@@ -39,6 +39,7 @@
       "react/button-has-type": "off",
       "import/prefer-default-export": "off",
       "no-param-reassign": "off",
+      "react/prop-types": "off",
       "react/jsx-filename-extension": [
           1,
           {
