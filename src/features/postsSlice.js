@@ -10,7 +10,7 @@ export const postsSlice = createSlice({
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     addPost: (state, action) => {
-      state.value = action.payload;
+      state.posts = action.payload;
       console.log('state: ', state);
       console.log('action: ', action);
       // Redux Toolkit allows us to write "mutating" logic in reducers. It

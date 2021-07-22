@@ -30,6 +30,7 @@ export const Home = () => {
           body={post.body}
           title={post.title}
           id={post.id}
+          clickable
         />
       ))}
     </Box>

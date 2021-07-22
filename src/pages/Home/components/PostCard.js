@@ -24,12 +24,15 @@ export const PostCard = ({
   id,
   title,
   body,
+  clickable,
 }) => {
   const history = useHistory();
   const classes = useStyles();
 
   const handleClick = () => {
-    history.push(`/post/${id}`);
+    if (clickable) {
+      history.push(`/post/${id}`);
+    }
   };
 
   return (
